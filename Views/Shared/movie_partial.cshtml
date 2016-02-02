@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ead_Project.Models.MoviePartial>
+<script>
+    
+</script>
+<style>
+    hr{
+        background-color:black;
+        border:0;
+        height:5px;
+    }
+</style>
+<div style="background-color:lavender">
+
+    <br /><br /><br /><br />
+    <hr style="background-color:black" width="100%" />
+
+@foreach (var v in Model)
+{
+    <div class="row">
+        <div class="col-md-3" style="margin-left:200px;">
+            <img style="float:left; margin-top:15px;" src="@v.PathImage" width="250" height="270" />
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <h2>  @v.Name</h2>
+            </div>
+
+            <div class="row">
+                <p> <b>Directors:</b>  @v.Directors</p>
+            </div>
+
+            <div class="row">
+                <p>  <b>Actors:</b>@v.Actors</p>
+            </div>
+
+            <div class="row">
+                <p>  <b>Gener:</b>@v.MovieType</p>
+            </div>
+
+            <div class="row">
+               <p> <b>Description</b><br/> @v.Description</p>
+            </div>
+        </div>
+        
+    </div>
+    <div style="width:20000px; background-color:black"></div>
+    <hr style="background-color:black" width="100%"/>
+    <br/><br/><br/>
+}
+</div>
+

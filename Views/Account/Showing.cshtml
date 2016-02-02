@@ -1,0 +1,73 @@
+﻿
+
+@model IEnumerable<Ead_Project.Models.MoviePartial>
+@{
+    ViewBag.Title="Showing";
+}
+<script src="~/scripts/jquery-1.10.2.js"></script>
+
+<style>
+    hr{
+        background-color:lawngreen;
+        border:0;
+        height:3px;
+    }
+
+    .coming_soon{
+        background-color:chartreuse;
+        height:80px;
+
+
+    }
+    .coming{
+        background-color:black;
+       
+    }
+
+    #coming_text{
+        padding:5px;
+        padding-bottom:5px;
+        
+    }
+</style>
+<div style="background-color:lavender">
+
+    <br /><br />
+    <div class="coming_soon">
+        <h4 id="coming_text" style="color:white; font-size:25px; margin-left:550px;padding-top:12px; padding-left:16px;">MOVIES SHOWING</h4>
+    </div><br/><br/>
+  
+    <br/><br/>
+    @foreach (var v in Model)
+    {
+        <div class="row">
+            <div class="col-md-3" style="margin-left:150px;">
+                <img style="float:left; margin-top:15px;" src="@v.PathImage" width="200" height="270" />
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <h2 style="color:forestgreen;margin-top:15px;">  @v.Name</h2>
+                </div>
+
+                <div class="row">
+                    <h4 style="color:red">Fortress Square Lahore Timings: @v.Showing --- @v.Timings</h4>
+                </div>
+
+                <div class="row">
+                    <h4 style="color:red">Fortress Mall Lahore Timings:@v.Showing --- @v.Timings</h4>
+                </div>
+
+                <div class="row">
+                    <h4 style="color:red">Lake City Lahore Timings:@v.Showing --- @v.Timings</h4>                </div>
+
+               
+                <br /><br /><br /><br/><br/><br/>
+
+            </div>
+        </div>
+        <br /><br />
+        <div style="width:20000px; background-color:black"></div>
+        <hr style="background-color:black" width="100%" />
+        <br /><br /><br />
+    }
+</div>

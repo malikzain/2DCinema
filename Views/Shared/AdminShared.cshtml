@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    int i;
+}
+@{
+    var session = Session["UserName"];
+    if (session.ToString() == "Default")
+    {
+        i = 0;
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdminShared</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="row-2">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul id="out" class="nav navbar-nav">
+                            <li>  <a href="/Admin/Index">Home</a>   </li>
+                            <li>  <a href="/Admin/AddMovie">Add Movie</a>   </li>
+                            <li>   <a href="/Admin/DeleteMovie">Delete Movie</a> </li>
+                            <li>    <a href="/Admin/UpdateMovie">Update Movie</a> </li>
+                            <li>    <a href="/Admin/Graphs_1">MovieGraph</a> </li>
+                            <li>    <a href="/Admin/AMovies">Movies</a> </li>
+
+                            @if (!(session.ToString() == "Default"))
+                            {
+                                <li id="Logout">
+                                    <a href="/Admin/Logout" style="font-weight:bold;font-size:medium">Logout</a>
+                                </li>
+                            }
+
+                        </ul>
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+        </div>
+
+
+        <!--SIGN IN-->
+
+
+    </div>
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

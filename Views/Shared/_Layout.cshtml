@@ -1,0 +1,173 @@
+﻿
+
+@{
+    int i;
+}
+@{
+    var session = Session["UserName"];
+    if (session.ToString() == "Default")
+    {
+        i = 0;
+    }
+}
+@{
+    /*if (@Session["UserName"].ToString().Equals( "Default"))
+    {
+        i = 0;
+    }
+    else if (@Session["UserName"].ToString() == "1")
+    {
+        i = 1;
+    }*/
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    @*<link href="@Url.Content("~/Content/StyleCss1.css")" rel="stylesheet" type="text/css" />*@
+    <script>
+        //document.getElementById("#Logout").hidden();
+
+        $(function () {
+            // $("#Logout").visible=false;
+            if (Session["UserName"].ToString() == "Default") {
+                $("ul li:has('a'):contains('Logout')").hide();
+
+            }
+            else if (Session["UserName"].ToString() == "1") {
+                i = 1;
+            }
+           /* if(i == 0)
+            {
+
+                    $("ul li:has('a'):contains('Logout')").hide();
+
+
+            }
+            else
+            {
+                $("ul li:has('a'):contains('Logout')").show();
+                $("ul li:has('a'):contains('Login')").hide();
+
+
+            }*/
+
+
+        });
+    </script>
+    <style>
+        body{
+    background-color:lavender;
+}
+    </style>
+
+
+
+</head>
+
+
+<body>
+    <div class="navbar">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="col-md-6">
+                   <!-- <a class="navbar-logo" href="/Home/Index" title="#"><img src="~/images/l1.png"  style="height:75px;width:75px" border="0" alt=""></a>-->
+                    <a href="/Home/Index" title="#"><img src="~/images/l1.png"  style="height:75px;width:350px" border="0" alt="" /></a>
+                </div>
+                <div class="col-md-6">
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav padding_top_10">
+                            <li>  <a href="/Home/Index" style="font-weight:bold;font-size:medium">Home</a>   </li>
+                            <li>  <a href="/Home/Movies" style="font-weight:bold;font-size:medium">Movies</a>   </li>
+                            <li>   <a href="/Account/Search" style="font-weight:bold;font-size:medium">Search</a> </li>
+                            <li>    <a href="/Home/About" style="font-weight:bold;font-size:medium">About</a> </li>
+                            <!--<li>    <a href="/Home/Contact" style="font-weight:bold;font-size:medium">Contact</a> </li>-->
+                            <li>    <a href="/Account/SignUp" style="font-weight:bold;font-size:medium">SignUp</a> </li>
+                            <li>    <a href="/Account/Showing" style="font-weight:bold;font-size:medium">Showing</a> </li>
+
+                            @if (session.ToString() == "Default")
+                            {
+                                <li>  <a href="/Account/Login" style="font-weight:bold;font-size:medium">Login</a> </li>
+                            }
+                          
+                            @if (!(session.ToString() == "Default"))
+                            {
+                                <li id="Logout">
+                                    <a href="/Account/Logout" style="font-weight:bold;font-size:medium">Logout</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+   
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <br /><br /><br /><br /><br /><br />
+
+    <footer class="footer" style="background-color:gainsboro">
+        <br /><br /><br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="col-md-3">
+                        <h2><a href="/Home/Index" title=""><img src="~/images/l1.png" style="height:170px;width:150px" border="0" alt=""></a></h2>
+                    </div>
+                    <div class="col-md-5">
+                        <p>
+                            This portal is for all Catering related things like event planner, entertainers, Food caterers, and much more.
+                            It facilitates a common man to organize event, he can get best deals for food, catering's, halls & marquees, beauticians at his maximum satisfaction level at his desired location.<br>
+                            Our portal facilitates common public as well as Lahore based companies involved in business of event management.
+                        </p>
+                        <p class="social-icons">
+                            <a href="#"><span class="fa fa-facebook"></span></a><a href="#"><span class="fa fa-twitter"></span></a><a href="#"><span class="fa fa-linkedin"></span></a><a href="#"><span class="fa fa-google-plus"></span></a><a href="#"><span class="fa fa-youtube"></span></a><a href="#"><span class="fa fa-instagram"></span></a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Contact info</h2>
+                        <ul class="related-icons-list">
+                            <li><span class="glyphicon glyphicon-envelope"></span>  Fortess Lahore <br>  SOZO WORLD</li>
+                            <li><span class="glyphicon glyphicon-phone"></span>  Phone: 03234608805 </li>
+                            <li><span class="glyphicon glyphicon-envelope"></span> <a href="" title=""> bilalmalik619@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>&copy; @DateTime.Now.Year - SOZO WORLD©</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- container -->
+    </footer>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

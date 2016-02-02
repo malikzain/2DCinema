@@ -1,0 +1,23 @@
+﻿@model Ead_Project.Models.MoviePartial
+
+@{
+    ViewBag.Title = "AddMovie1";
+    Layout = "~/Views/Shared/AdminShared.cshtml";
+}
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { @class = "form login-form" }))
+            {
+    @Html.TextBoxFor(x => x.Name, new { @class = "input-has-icon left-icon form-control", placeholder = "Company Name" })
+    @Html.TextBoxFor(x=>x.MovieType, new { @class = "input-has-icon left-icon form-control", placeholder = "Email Address" })
+    @Html.TextBoxFor(x=>x.Showing, new { @class = "input-has-icon left-icon form-control", placeholder = "Password" })
+    @Html.TextBoxFor(x => x.Actors, new { @class = "input-has-icon left-icon form-control", placeholder = "Company Name" })
+    @Html.TextBoxFor(x => x.Directors, new { @class = "input-has-icon left-icon form-control", placeholder = "Email Address" })
+    @Html.TextBoxFor(x => x.Timings, new { @class = "input-has-icon left-icon form-control", placeholder = "Password" })
+    //@Html.Password("confirm_password", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Confirm Password" })
+    //@Html.TextBox("office_location", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Office Location" })
+    //@Html.TextBox("phone1", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Contact Number#1" })
+    //@Html.TextBox("phone2", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Contact Number#2" })
+    <p><label><input type="checkbox"> I agree with the terms &amp; conditions</label></p>
+    <input type="submit" value="Create an Account" class="btn btn-lg btn-success btn-block" style="color:white">
+}
+

@@ -1,0 +1,150 @@
+﻿@model Ead_Project.Models.MyUser
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contact</title>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <style>
+        #tbody {
+            margin-left: 60px;
+            margin-right: 60px;
+            padding-top:50px;
+        }
+        #googleMap3{
+            float:right;
+            margin-top:115px;
+            margin-right:100px;
+        }
+
+       
+    </style>
+</head>
+
+@{
+
+    ViewBag.Title = "Contact";
+}
+<p><br /><br /></p>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="panel panel-default" style="background-color:gainsboro">
+            <div class="panel-body">
+                <div class="page-header" style="margin-top:5px;">
+                    <h3>Contact Area</h3>
+                </div>
+
+                @using (Html.BeginForm("Contact", "Home", new { @class = "form login-form" }))
+                {
+                    Html.ValidationSummary(true);
+                    @Html.TextBoxFor(x => x.Name, new { @class = "input-has-icon left-icon form-control", placeholder = "Enter Your Name" })
+                    Html.ValidationMessageFor(x=> x.Name);
+                    @Html.TextBoxFor(x => x.Email, new { @class = "input-has-icon left-icon form-control", placeholder = "Enter Your Email" })
+                    Html.ValidationMessageFor(x => x.Email);
+                    @Html.TextBoxFor(x => x.Password, new { @class = "input-has-icon left-icon form-control", placeholder = "Enter Your Password" })
+                    Html.ValidationMessageFor(x => x.Password);
+                    @Html.TextAreaFor(x => x.TextArea, new { @class = "input-has-icon left-icon form-control", placeholder = "Enter Your Info" })
+                    Html.ValidationMessageFor(x => x.TextArea);
+
+                    //@Html.Password("confirm_password", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Confirm Password" })
+                    //@Html.TextBox("office_location", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Office Location" })
+                    //@Html.TextBox("phone1", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Contact Number#1" })
+                    //@Html.TextBox("phone2", "", new { @class = "input-has-icon left-icon form-control", placeholder = "Contact Number#2" })
+                    <p><label><input type="checkbox"> I agree with the terms &amp; conditions</label></p>
+                    <input type="submit" value="Create an Account" class="btn btn-lg btn-success btn-block" style="color:white">
+                }
+                <!--Form Starting-->
+                <!--<form id="signupf" class="form-horizontal" method="post" action="/Account/Login">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input id="Name_S" type="text" class="form-control" placeholder="Enter your Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input id="Email_S" type="email" class="form-control" placeholder="Email">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input id="Password_S" type="text" class="form-control" placeholder="*PhoneNumber">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                         <div class="col-sm-10">
+                            <div class="input-group">
+                                <textarea class="form-control" rows="5" placeholder="*Message" id="conmessage"></textarea>
+                                <span class="text-danger" style="color:red; font-size:medium" id="four"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <button type="button" class="btn btn-default" id="sub">Submit</button>
+                                <span class="text-danger" style="color:red; font-size:medium" id="four"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>-->
+            </div>
+        </div>
+    </div>
+    <!--Form Ending-->
+    <div class="col-md-2"></div>
+
+
+</div>
+
+<!--<div id="tbody">
+    <div class="text-left" style="font-size:xx-large; font-weight:bold">Contact</div>
+    <hr />
+    <div class="text-left" style="margin-bottom:15px;">
+        <p style="font-size:large">If You want to contact us by phone than call us at 03234608805..</p>
+    </div>
+    <div id="formhide">
+        <div class="form-group">
+            <input type="text" class="form-control" id="conname" placeholder="*Name">
+            <span class="danger" style="color:red; font-size:medium" id="one"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="conemail" placeholder="*Email">
+            <span class="danger" style="color:red; font-size:medium" id="two"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="conphone" placeholder="*Phone Number">
+            <span class="danger" style="color:red; font-size:medium" id="three"></span>
+        </div>
+        <div class="form-group">
+            @*<input type="text" class="form-control" id="conmessage" placeholder="*Message" style="height:200px">*@
+            <textarea class="form-control" rows="5" placeholder="*Message" id="conmessage"></textarea>
+            <span class="text-danger" style="color:red; font-size:medium" id="four"></span>
+        </div>
+        <button type="button" class="btn btn-default" id="sub">Submit</button>
+    </div>
+    <div style="margin-top:20px; font-size:large"><p id="late"></p></div>
+</div>
+    -->

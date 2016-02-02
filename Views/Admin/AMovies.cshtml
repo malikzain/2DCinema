@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Ead_Project.Models.MoviePartial>
+@{
+    ViewBag.Title = "AMovies";
+    Layout = "~/Views/Shared/AdminShared.cshtml";
+}
+
+<style>
+    hr {
+        background-color: lawngreen;
+        border: 0;
+        height: 3px;
+    }
+
+    .coming_soon {
+        background-color: chartreuse;
+        height: 80px;
+    }
+
+    .coming {
+        background-color: black;
+    }
+
+    #coming_text {
+        padding: 5px;
+        padding-bottom: 5px;
+    }
+</style>
+
+<br /><br />
+<div class="coming_soon">
+    <h4 id="coming_text" style="color:white; font-size:25px; margin-left:550px;padding-top:12px; padding-left:16px;">MOVIES SHOWING</h4>
+</div><br /><br />
+
+<br /><br />
+
+
+<div class="row">
+    <div class="col-md-2" style="font-weight:bold;color:red">Name</div>
+    <div class="col-md-2" style="font-weight:bold;color:red">Gener</div>
+    <div class="col-md-2" style="font-weight:bold;color:red">Actors</div>
+    <div class="col-md-2" style="font-weight:bold;color:red">Directors</div>
+    <div class="col-md-2" style="font-weight:bold;color:red">Timings</div>
+    <div class="col-md-2" style="font-weight:bold;color:red">Date</div>
+
+</div>
+@foreach (var v in Model)
+{
+    <div class="row">
+        <div class="col-md-2">@v.Name</div>
+        <div class="col-md-2">@v.MovieType</div>
+        <div class="col-md-2">@v.Actors</div>
+        <div class="col-md-2" id="st">@v.Directors</div>
+        <div class="col-md-2" id="st">@v.Timings</div>
+        <div class="col-md-2" id="st">@v.Showing</div>
+
+
+    </div>
+}

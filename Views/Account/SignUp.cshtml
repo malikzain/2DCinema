@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<script src="~/scripts/jquery-1.10.2.js"></script>
+
+<script>
+    $(function () {
+        var i = "0", color = "";
+        var flag = "0";
+
+        $("#check_u").click(function () {
+
+          //  alert("inside1");
+            $.getJSON("/Account/validate1", { "name": $('#UserName_S').val() }, function (successResult) {
+                if (successResult == true) {
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Your UserName Already exists!!!!");
+                    flag = "1";
+                }
+                else {
+                    //$(".Error").css("color", "red");
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Your UserName Does Not exists!!!!");
+                    flag = "0";
+
+                }
+
+            });
+        });
+      //  alert("flag:" + flag);
+      //  if(flag == "0")
+        // {
+             var $form = $("#signupf");
+              $form.find('input[type="submit"]').click(function () {
+            if (i == 0) {
+                color = $("#Name_SL").css("color");
+                i = "1";
+            }
+            else {
+                $("#Name_SL").css("color", color);
+                $("#UserName_SL").css("color", color);
+                $("#Email_SL").css("color", color);
+                $("#Password_SL").css("color", color);
+                $("#Name_S").css("border", "3px solid white");
+                $("#UserName_S").css("border", "3px solid white");
+                $("#Email_S").css("border", "3px solid white");
+                $("#Password_S").css("border", "3px solid white");
+                $(".Error").hide().html("Please Enter Your Email");
+
+            }
+            $.ajax({
+                type:"POST",
+                url: "/Account/CheckFieldsSignUp",
+                data : { "Name": $("#Name_S").val(), "UserName": $("#UserName_S").val(), "Email": $("#Email_S").val(), "Password": $("#Password_S").val() }
+
+            }).success(function(successResult){
+                //alert(successResult);
+
+                if (successResult == "0") {
+                   // alert("success");
+                    $form.submit();
+                }
+                else if (successResult == "-1")
+                {
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Your UserName Already Exists b");
+                }
+                if (successResult == "1") {
+                    $("#Name_SL").css("color", "red");
+                    $("#Name_S").css("border", "3px solid red");
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Please Enter Your Name");
+                }
+                else if (successResult == "2") {
+                    $("#UserName_SL").css("color", "red");
+                    $("#UserName_S").css("border", "3px solid red");
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Please Enter Your UserName");
+                }
+                else if (successResult == "3") {
+                    $("#Email_SL").css("color", "red");
+                    $("#Email_S").css("border", "3px solid red");
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Please Enter Your Email");
+
+                }
+                else if (successResult == "4") {
+                    $("#Password_SL").css("color", "red");
+                    $("#Password_S").css("border", "3px solid red");
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Please Enter Your Password");
+                }
+                else if (successResult == "5") {
+                    $("#Name_SL").css("color", "red");
+                    $("#UserName_SL").css("color", "red");
+                    $("#Email_SL").css("color", "red");
+                    $("#Password_SL").css("color", "red");
+                    $("#Name_S").css("border", "3px solid red");
+                    $("#UserName_S").css("border", "3px solid red");
+                    $("#Email_S").css("border", "3px solid red");
+                    $("#Password_S").css("border", "3px solid red");
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Your All Fields are Empty!!!");
+
+                }
+            });
+
+            return false;
+         });
+       // }
+       // else
+        //{
+          //  $(".Error").css("color", "red");
+            //$(".Error").show().html("Your UserName Already Exists!!!");
+        //}
+    });
+
+</script>
+
+
+<p><br /><br /></p>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="panel panel-default" style="background-color:gainsboro">
+            <div class="panel-body">
+                <div class="page-header" style="margin-top:5px;">
+                    <h3>SignUp Area</h3>
+                </div>
+
+                <!--Form Starting-->
+                <form id="signupf" class="form-horizontal" method="post" action="/Account/Login">
+                    <div class="form-group">
+                        <label id="Name_SL" for="Name_S" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input id="Name_S" type="text" class="form-control" placeholder="Enter your Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="UserName_SL" for="UserName_S" class="col-sm-2 control-label">UserName</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input id="UserName_S" type="text" class="form-control" placeholder="Enter your User Name">
+                                <button id="check_u" style="margin-left:5px;" type="button" class="btn btn-success">Check Availability</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="Email_SL" for="Email_S" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input id="Email_S" type="email" class="form-control" placeholder="Email">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="Password_SL" for="Password_S" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+                                <input id="Password_S" type="password" class="form-control" placeholder="Enter Your Password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> I agree with all terms and conditions
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input id="Register_S" type="submit" class="btn btn-primary" value="Register" />
+                        </div>
+                    </div>
+                    <div class="Error"><p></p></div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Form Ending-->
+    <div class="col-md-2"></div>
+
+
+</div>
+
+
+
+

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Graphs_1";
+    Layout = "~/Views/Shared/AdminShared.cshtml";
+}
+<script src="~/scripts/Chart.js"></script>
+<script src="~/scripts/Chart.min.js"></script>
+<script src="~/scripts/jquery-1.10.2.js"></script>
+
+<script>
+    $(function () {
+        var ctx = $("#my_canvas").get(0).getContext("2d");
+
+        var data = [
+            {
+                value: 170,
+                color: "cornflowerblue",
+                highlight: "lightskyblue",
+                label: "Corn Flower Blue"
+            },
+            {
+                value: 150,
+                color: "lightgreen",
+                highlight: "YellowGreen",
+                label: "Light Green"
+            },
+            {
+                value: 40,
+                color: "orange",
+                highlight: "darkorange",
+                label: "Orange"
+            }
+        ];
+
+        var p = new Chart(ctx).Pie(data);
+    });
+</script>
+
+<canvas style="margin-left:400px;margin-right:100px;margin-top:200px" id="my_canvas" width="500" height="500"></canvas>

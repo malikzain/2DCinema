@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "AddMovie";
+    Layout = "~/Views/Shared/AdminShared.cshtml";
+}
+<script src="~/scripts/jquery-1.10.2.js"></script>
+
+<script>
+   /* $(function () {
+        $("#Add").click(function () {
+            $.getJSON("/Admin/AddMovie1", {
+                "Name": $('#Name').val(), "MovieType": $('#MovieType').val(), "Showing": $('#Showing').val(), "Actors": $('#Actors').val(), "Directors": $('#Directors').val(), "Timings": $('#Timings').val(), "Description": $('#Description').val(), "PathImage": $('#PathImage').val()}
+            , function (success) {
+                if (success == "0") {
+                    alert("Added");
+                }
+                else
+                    alert("Not Added");
+            });
+        });
+    });*/
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="well well-sm" style="margin-top:40px">
+                <form  action="/Admin/AddMovie1" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <fieldset>
+                        <legend class="text-center header" style="color:green">Add Movie</legend>
+                        <div class="form-group">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <label>Name</label>
+                                <input type="text" id="Name" name="Name" placeholder="Enter Movie Name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <label>Type</label>
+                                <input type="text" id="MovieType" name="MovieType" placeholder="Enter Movie Type:Action/Horror/Animated" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <label>Date</label>
+                                <input type="text" id="Showing" name="Showing" placeholder="Enter Movie Date" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <label>Actors</label>
+                                <input type="text" id="Actors" name="Actors" placeholder="Enter Movie Actor Name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <label>Directors</label>
+                                <input type="text" id="Directors" name="Directors" placeholder="Enter Movie Director Name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <label>Timings</label>
+                                <input type="text" id="Timings" name="Timings" placeholder="Enter Movie Timings{11:30}" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <label>Description</label>
+                                <textarea class="form-control" id="Description" name="Description" placeholder="Enter Movie Description" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 col-md-offset-1">
+                                <label>Movie Picture</label>
+                                <input name="PathImage" id="PathImage" type="file" data-overwrite-initial="false">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" id="Add" class="btn-success" value="AddMovie" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

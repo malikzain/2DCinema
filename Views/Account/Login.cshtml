@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<script src="~/scripts/jquery-1.10.2.js"></script>
+
+<script>
+
+    $(function () {
+        var i = "0", color = "";
+
+        var $form = $("#loginf");
+        $form.find('input[type="submit"]').click(function () {
+
+      //  $("#Login").click(function () {
+            
+            if (i == 0) {
+                color = $("#Login_L").css("color");
+              //  alert("inside");
+                i = "1";
+            }
+            else {
+                var e = $("#Login_L").css("color");
+                $("#Login_L").css("color", color);
+                $("#User_Login").css("border", "3px solid white");
+                $(".Error").css("color", "51 51 51");
+                $(".Error").hide().html("Please Enter Your Email");
+                $("#Password_L").css("color", color);
+                $("#Password").css("border", "3px solid white");
+
+            }
+            alert("ja");
+            $.ajax({
+                
+                type:"POST",
+                url: "/Account/CheckFieldsSignIn",
+                data: { "UserName": $('#User_Login').val(), "Password": $('#Password').val() }
+
+            }).success(function(successResult){
+
+           // $.getJSON("/Account/CheckFields", { "Email": $('#User_Login').val(), "Password": $('#Password').val() }, function (successResult) {
+                // alert(successResult);
+
+                if (successResult == "3") {
+                    alert("admin");
+                    window.location = "/Admin/Index";
+                    // $("ul li:has('a'):contains('Logout')").show();
+                    //$("ul li:has('a'):contains('Login')").hide();
+                }
+                
+                if (successResult == "-1") {
+                    alert("success");
+                   // $("ul li:has('a'):contains('Logout')").show();
+                    //$("ul li:has('a'):contains('Login')").hide();
+
+                    $form.submit();
+                }
+               
+                else if( successResult == "0")
+                {
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Invalid UserName And Password");
+                }
+                else if (successResult == "3") {
+                    $("#Login_L").css("color", "red");
+                    $("#User_Login").css("border", "3px solid red");
+                    $("#Password_L").css("color", "red");
+                    $(".Error").css("color", "red");
+                    $("#Password").css("border", "3px solid red");
+                    $(".Error").show().html("Please Enter Your UserName and Password!!");
+                }
+                else if (successResult == "1") {
+                 //   alert(successResult);
+
+                    $("#Login_L").css("color", "red");
+                    $("#User_Login").css("border", "3px solid red");
+                    $(".Error").css("color", "red");
+                    $(".Error").show().html("Please Enter Your User Name");
+                }
+                else if (successResult == "2")
+                {
+                    $("#Password_L").css("color", "red");
+                    $(".Error").css("color", "red");
+                    $("#Password").css("border", "3px solid red");
+                    $(".Error").show().html("Please Enter Your Password");
+
+                }
+                else
+                {
+                    //alert("jamal");
+                    $("#Login_L").css("color", color);
+                    $("#User_Login").css("border", "3px solid white");
+                    $(".Error").css("color", "51 51 51");
+                    $(".Error").hide().html("Please Enter Your Email");
+                    $("#Password_L").css("color", color);
+                }
+                
+                
+            });
+            return false;
+        });
+    });
+
+</script>
+
+
+<br/><br/><br/>
+<div class="row" >
+    <div class="col-md-2"></div>
+    <div class="col-md-8" >
+        <div class="panel panel-default">
+            <div class="panel-body"  style="background-color:gainsboro">
+                <div class="page-header" style="margin-top:5px;">
+                    <h3>Login Area</h3>
+                </div>
+                <!--Form Starting-->
+                <form id="loginf" class="form-horizontal" action="/Home/Index" method="post">
+                    <div class="form-group">
+                        <label id ="Login_L" for="User_Login" class="col-sm-2 control-label">UserName</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" id="User_Login" placeholder="UserName">
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label id="Password_L" for="Password" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+                                <input type="password" class="form-control" id="Password" placeholder="Password">
+                             </div>
+                        </div>
+                    </div>
+                   <!-- <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input id="Register_S" type="submit" class="btn btn-primary" value="Login" />
+                            <button type="button" class="btn btn-success">Back to Home</button>
+
+                        </div>
+                    </div>
+
+                    <div class="Error"><p></p></div>
+                </form> 
+               </div>
+            </div>
+        </div>
+    <!--Form Ending-->
+    <div class="col-md-2"></div>
+ </div>
+<br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br />
+
+
+
